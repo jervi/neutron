@@ -1,12 +1,11 @@
 require.config({
     paths: {
-        jquery: '../bower_components/jquery/jquery'
+        d3: '../bower_components/d3'
     }
 });
 
-require(['app', 'jquery'], function (app, $) {
+require(['app'], function (app) {
     'use strict';
     // use app here
     console.log(app);
-    console.log('Running jQuery %s', $().jquery);
 });
