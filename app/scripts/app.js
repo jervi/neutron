@@ -25,8 +25,15 @@ define(['jquery', 'handsontable'], function () {
         table.setDataAtCell(x, y, e);
     };
 
+    var getData = function() {
+        if (table) {
+            return table.getData();
+        }
+    };
+
     return {
         initTable: initTable,
-        populateData: populateData
+        populateData: populateData,
+        getData: getData
     };
 });
