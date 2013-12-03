@@ -11,6 +11,9 @@ define(['jquery', 'handsontable'], function () {
         table;
 
     var initTable = function() {
+        var body = $('body');
+        var width = body.width();
+        var height = body.height();
         $('#dataTable').handsontable({
             //data: data,
             startRows: 6,
