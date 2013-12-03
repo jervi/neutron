@@ -10,18 +10,51 @@ define(['jquery', 'handsontable'], function () {
         ],
         table;
 
+    var calculateSize = function() {
+        var doc = $(document);
+        var width = doc.width();
+        var height = doc.height();
+        console.log(height);
+        var colWidth = 50;
+        var colHeight = 23;
+        return {
+            colWidth: colWidth,
+            colHeight: colHeight,
+            width: width,
+            height: height,
+            cols: Math.floor(width / colWidth),
+            rows: Math.floor(height / colHeight)
+        };
+    };
+
+    var setSize = function(table) {
+        var size = calculateSize();
+
+        table.updateSettings({
+            startRows: (size.rows - 1),
+            startCols: (size.cols - 1)
+            /*width: size.width,
+            height: size.height*/
+        });
+    };
+
     var initTable = function() {
-        var body = $('body');
-        var width = body.width();
-        var height = body.height();
+        var size = calculateSize();
+        console.log(size);
         $('#dataTable').handsontable({
             //data: data,
-            startRows: 6,
-            startCols: 8,
+            startCols: size.cols,
+            startRows: size.rows,
+            width: size.width,
+            height: size.height,
             colHeaders: true,
-            rowHeaders: true
+            rowHeaders: true,
         });
         table = $('#dataTable').handsontable('getInstance');
+
+        $(window).resize(function() {
+            setSize(table);
+        });
     };
 
     var populateData = function(x, y, e) {
