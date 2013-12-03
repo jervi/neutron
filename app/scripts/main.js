@@ -15,6 +15,6 @@ require.config({
 require(['app'], function (app) {
     'use strict';
     // use app here
-    var table = app.initTable();
-    app.populateData(table);
+    app.initTable();
+    app.populateData(0, 0, 5);
 });
